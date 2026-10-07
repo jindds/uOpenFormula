@@ -11,15 +11,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Convert environment.yml to UTF-8
+        shell: pwsh
+        run: |
+          Get-Content environment.yml | Where-Object { $_ -notmatch '^prefix:' } | Set-Content -Encoding utf8 environment-utf8.yml
+
       - uses: conda-incubator/setup-miniconda@v3
         with:
-          environment-file: environment.yml
+          environment-file: environment-utf8.yml
           activate-environment: FSAEDataGUI
-          auto-activate-base: false
+          auto-activate: false
 
       - name: Build exe
         shell: bash -el {0}
         run: |
+          conda activate FSAEDataGUI
           pip install pyinstaller
           pyinstaller --onefile --windowed --name uOpenFormula --add-data "Assets;Assets" main.py
 
