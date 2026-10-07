@@ -47,8 +47,6 @@ Then, verify your dearpygui installation by running the following command:
 
 You should see a demo program showing off some features. You can now install Git and your preferred integrated development environment (IDE) to contribute to the software! Make sure to set your environment to FSAEDataGUI in the IDE. You should also be familiar with using branches and making pull requests on Git, you can find many good tutorials on YouTube. We recommend using [GitHub Desktop](https://desktop.github.com/download/) and [VSCode](https://code.visualstudio.com/).
 
-Exe
-
 <br />
 
 ![Alt Text](https://i.redd.it/q0dd3k02unqb1.gif)
