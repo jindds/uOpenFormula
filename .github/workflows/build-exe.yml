@@ -1,0 +1,29 @@
+name: Build exe
+
+on:
+  push:
+    branches: [main, exe-build]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: conda-incubator/setup-miniconda@v3
+        with:
+          environment-file: environment.yml
+          activate-environment: FSAEDataGUI
+          auto-activate-base: false
+
+      - name: Build exe
+        shell: bash -el {0}
+        run: |
+          pip install pyinstaller
+          pyinstaller --onefile --windowed --name uOpenFormula --add-data "Assets;Assets" main.py
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: uOpenFormula-exe
+          path: dist/uOpenFormula.exe
