@@ -31,7 +31,7 @@ jobs:
         run: |
           conda activate FSAEDataGUI
           pip install pyinstaller
-          pyinstaller --onefile --windowed --name uOpenFormula --add-data "Assets;Assets" main.py
+          pyinstaller --onefile --windowed --name uOpenFormula --icon Assets/Formula_uottawa.ico --version-file version_info.txt --add-data "Assets;Assets" main.py
 
       - uses: actions/upload-artifact@v4
         with:
